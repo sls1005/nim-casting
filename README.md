@@ -8,14 +8,15 @@ This wraps the C++ cast operators for the Nim programming language.
 from casting import staticCast
 
 var f: float64 = 1 / 2
-let i: int = staticCast[int](f)
+let i: int64 = staticCast[int](f)
 echo i #0
 ```
 
 ### Note
-+ Consider using the built-in `cast` keyword instead. This module should only be used where `cast` fails, or is inappropriate to use.
++ Consider using the built-in `cast` keyword instead. This module should only be used where `cast` fails, or is inappropriate to be used.
 
-+ Some of the `proc`s provided by this module allow performing unsafe operations. Please be sure of knowing what you are doing when using them.
+### Warning
++ Some of the `proc`s provided by this module allow performing unsafe operations. Please be sure of knowing what you are doing with them.
 
 ### Reference
-  + <https://cplusplus.com/doc/tutorial/typecasting>
++ <https://cplusplus.com/doc/tutorial/typecasting>
