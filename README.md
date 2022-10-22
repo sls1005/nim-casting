@@ -6,7 +6,6 @@ This wraps the C++ cast operators for the Nim programming language.
 
 ```nim
 from casting import staticCast
-
 var f: float64 = 1 / 2
 let i: int64 = staticCast[int](f)
 echo i #0
