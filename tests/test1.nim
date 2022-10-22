@@ -19,17 +19,18 @@ type
 
 proc main =
   var b: B
-  let p1: ptr A = dynamicCast[ptr A](b.addr)
-  assert p1 != nil
   b.i = 1
-  echo (p1[]).i
+  let p1: ptr A = dynamicCast[ptr A](b.addr)
+  if unlikely(p1.isNil()):
+    echo "failed to cast"
+  else:
+    echo (p1[]).i
   var f = 1 / 2 + 3
   echo f
   let x = staticCast[int](f)
   echo x
   let y = cast[int](f)
-  echo y
   let p2 = reinterpretCast[ptr[int]](f.addr)
-  echo p2[]
+  echo likely(p2[] == y)
 
 main()
