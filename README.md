@@ -5,10 +5,19 @@ This wraps the C++ cast operators for the Nim programming language.
 ### Example
 
 ```nim
-from casting import staticCast
-var f: float64 = 1 / 2
-let i: int64 = staticCast[int](f)
-echo i #0
+from casting import dynamicCast
+type
+  A {.inheritable, pure.} = object
+    a: int
+  B = object of A
+    b: float
+var x: B
+let p: ptr A = dynamicCast[ptr A](x.addr)
+if p.isNil():
+  echo "failed to cast"
+else:
+  (p[]).a = 1
+  assert x.a == 1
 ```
 
 ### Note
