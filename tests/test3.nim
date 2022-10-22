@@ -2,9 +2,9 @@ from casting import dynamicCast
 
 type
   A {.inheritable, pure.} = object
-    a: cint
+    a: int
   B = object of A
-    b: cstring
+    b: float
 
 proc main =
   var x: B
