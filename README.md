@@ -12,7 +12,7 @@ echo i #0
 ```
 
 ### Note
-+ Consider using the built-in `cast` keyword instead. This module should only be used where `cast` fails, or is inappropriate to be used.
++ When you have to cast something, please use the built-in keyword `cast` if possible. This library should only be used where `cast` fails, or is inappropriate to use.
 
 ### Warning
 + Some of the `proc`s provided by this module allow performing unsafe operations. Please be sure of knowing what you are doing with them.
