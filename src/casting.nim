@@ -7,14 +7,14 @@ proc cCast*[T](a: auto): T {.importcpp: "(('0) #)", nodecl.}
   ## C-style casting.
 proc staticCast*[T](a: auto): T {.importcpp: "static_cast<'0>(#)", nodecl.}
 
-proc dynamicCast*[T: pointer | ptr[object]](p: pointer | ptr[object]): T {.importcpp: "dynamic_cast<'0>(#)", nodecl.}
+proc dynamicCast*[S: pointer | ptr[object]](p: pointer | ptr[object]): S {.importcpp: "dynamic_cast<'0>(#)", nodecl.}
   #                                                                    ^ Can be `nil`!
   ## Can only be used on a pointer to an object of a C++ class.
   ## One might have to enable `-frtti` in order to use this `proc`.
   ##
   ## .. note::
   ##   This can return `nil` if failed.
-proc dynamicCast*[T: var object](p:var object): T {.importcpp: "dynamic_cast<'0>(#)", nodecl.}
+proc dynamicCast*[R: var object](v: var object): R {.importcpp: "dynamic_cast<'0>(#)", nodecl.}
   ## **Example:**
   ##
   ## .. code-block::
