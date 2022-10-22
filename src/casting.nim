@@ -26,6 +26,6 @@ proc dynamicCast*[T: var object](p:var object): T {.importcpp: "dynamic_cast<'0>
   #    a = 1
   #  assert x.a == 1
 proc reinterpretCast*[T: SomeIntegerOrPointer](p: SomeIntegerOrPointer): T {.importcpp: "reinterpret_cast<'0>(#)", nodecl.}
-
+  # If the input is non-nil, non-zero, then it does not return `nil`.
 proc constCast*[T](x: T): T {.importcpp: "const_cast<'0>(#)", nodecl.}
   ## Removes the const qualifier of a C variable.
