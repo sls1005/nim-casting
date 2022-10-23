@@ -18,7 +18,6 @@ proc dynamicCast*[T: object](v: var object): var T {.raises: [BadCast], importcp
   ## **Example:**
   ##
   ## .. code-block::
-  ##   import std/with
   ##   import casting
   ##   type
   ##     A {.inheritable, pure.} = object
@@ -26,11 +25,14 @@ proc dynamicCast*[T: object](v: var object): var T {.raises: [BadCast], importcp
   ##     B = object of A
   ##       b: float
   ##   var x: B
+  ##   {.push experimental: "views".}
   ##   try:
-  ##     dynamicCast[A](x).a = 1
+  ##     var y: var A = dynamicCast[A](x)
+  ##     y.a = 1
   ##     assert x.a == 1
   ##   except BadCast as e:
   ##     echo e.what()
+  ##   {.pop.}
 proc reinterpretCast*[T: SomeIntegerOrPointer](p: SomeIntegerOrPointer): T {.raises: [], importcpp: "reinterpret_cast<'0>(#)", nodecl.}
 
 proc constCast*[T](x: T): T {.raises: [], importcpp: "const_cast<'0>(#)", nodecl.}
