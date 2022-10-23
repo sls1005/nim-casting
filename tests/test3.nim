@@ -18,7 +18,6 @@ proc main =
     y.a = 2
     echo x.a #should be 1
     {.push experimental: "views".}
-    (dynamicCast[var A](x)).a = 1
     var z: var A = dynamicCast[var A](x)
     assert z.a == 1
     # `z` is of a view type.
