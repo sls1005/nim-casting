@@ -6,7 +6,7 @@ type
   B = object of A
     b: float
 
-proc main =
+proc main {.raises: [].} =
   var x: B
   try:
     (dynamicCast[var A](x)).a = 1
