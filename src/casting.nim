@@ -2,6 +2,7 @@ when not defined(cpp):
   {.error: "This can only be used with the C++ backend".}
 
 import ./casting/exceptions
+export exceptions
 
 type SomeIntegerOrPointer = SomeInteger | pointer | ptr[auto]
 
@@ -19,7 +20,7 @@ proc dynamicCast*[R: var object](v: var object): R {.raises: [BadCast], importcp
   ##
   ## .. code-block::
   ##   import std/with
-  ##   from casting import dynamicCast
+  ##   import casting
   ##   type
   ##     A {.inheritable, pure.} = object
   ##       a: cint
@@ -36,5 +37,3 @@ proc reinterpretCast*[T: SomeIntegerOrPointer](p: SomeIntegerOrPointer): T {.rai
   ## If the input is non-nil and non-zero, the result is not `nil`.
 proc constCast*[T](x: T): T {.raises: [], importcpp: "const_cast<'0>(#)", nodecl.}
   ## Removes the const qualifier of a C variable.
-
-export exceptions
