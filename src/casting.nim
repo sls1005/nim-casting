@@ -9,12 +9,12 @@ proc cCast*[T](a: auto): T {.raises: [], importcpp: "(('0) #)", nodecl.}
   ## C-style casting.
 proc staticCast*[T](a: auto): T {.raises: [], importcpp: "static_cast<'0>(#)", nodecl.}
 
-proc dynamicCast*[S: pointer | ptr[object]](p: pointer | ptr[object]): S {.raises: [], importcpp: "dynamic_cast<'0>(#)", nodecl.}
+proc dynamicCast*[T: pointer | ptr[object]](p: pointer | ptr[object]): T {.raises: [], importcpp: "dynamic_cast<'0>(#)", nodecl.}
   #                                                                    ^ Can be `nil`!
   ## Can only be used on a pointer to an object of a C++ class.
   ## One might have to use `--passC:-frtti` in order to use this `proc`.
   ## **Note:** This can return `nil` if failed.
-proc dynamicCast*[R: var object](v: var object): R {.raises: [BadCast], importcpp: "dynamic_cast<'0>(#)", nodecl.}
+proc dynamicCast*[T: object](v: var object): var T {.raises: [BadCast], importcpp: "dynamic_cast<'0>(#)", nodecl.}
   ## **Example:**
   ##
   ## .. code-block::
@@ -27,8 +27,7 @@ proc dynamicCast*[R: var object](v: var object): R {.raises: [BadCast], importcp
   ##       b: float
   ##   var x: B
   ##   try:
-  ##     with dynamicCast[var A](x):
-  ##       a = 1
+  ##     dynamicCast[A](x).a = 1
   ##     assert x.a == 1
   ##   except BadCast as e:
   ##     echo e.what()
