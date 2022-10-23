@@ -2,7 +2,6 @@ when not defined(cpp):
   {.error: "This can only be used with the C++ backend".}
 
 import ./casting/exceptions
-export exceptions
 
 type SomeIntegerOrPointer = SomeInteger | pointer | ptr[auto]
 
@@ -37,3 +36,6 @@ proc reinterpretCast*[T: SomeIntegerOrPointer](p: SomeIntegerOrPointer): T {.rai
   ## If the input is non-nil and non-zero, the result is not `nil`.
 proc constCast*[T](x: T): T {.raises: [], importcpp: "const_cast<'0>(#)", nodecl.}
   ## Removes the const qualifier of a C variable.
+
+export exceptions.BadCast
+export exceptions.what
