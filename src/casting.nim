@@ -22,9 +22,9 @@ proc dynamicCast*[R: var object](v: var object): R {.raises: [BadCast], importcp
   ##   import casting
   ##   type
   ##     A {.inheritable, pure.} = object
-  ##       a: cint
+  ##       a: int
   ##     B = object of A
-  ##       b: cstring
+  ##       b: float
   ##   var x: B
   ##   try:
   ##     with dynamicCast[var A](x):
@@ -33,7 +33,7 @@ proc dynamicCast*[R: var object](v: var object): R {.raises: [BadCast], importcp
   ##   except BadCast as e:
   ##     echo e.what()
 proc reinterpretCast*[T: SomeIntegerOrPointer](p: SomeIntegerOrPointer): T {.raises: [], importcpp: "reinterpret_cast<'0>(#)", nodecl.}
-  ## If the input is non-nil and non-zero, the result is not `nil`.
+
 proc constCast*[T](x: T): T {.raises: [], importcpp: "const_cast<'0>(#)", nodecl.}
   ## Removes the const qualifier of a C variable.
 
