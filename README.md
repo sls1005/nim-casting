@@ -21,10 +21,10 @@ else:
 ```
 
 ### Note
-+ Please use the built-in keyword `cast` if possible. This library should only be used where `cast` fails, or is inappropriate to use.
++ Please use the built-in keyword `cast` if possible. This wrapper should only be used where `cast` fails, or is inappropriate to use.
 
 ### Warning
-+ Some of the `proc`s provided by this module allow performing unsafe operations. Please be sure of knowing what you are doing with them.
++ Some of the `proc`s provided by this package allow performing unsafe operations. Please be sure of knowing what you are doing with them.
 
 ### Reference
 + <https://cplusplus.com/doc/tutorial/typecasting>
